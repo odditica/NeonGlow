@@ -27,7 +27,7 @@ void main()
     vec2 offset = vec2(dFdx(v_vTexcoord.x), 0.);   	
 	vec4 blur = vec4(0);    
 		
-    for (float i = -RADIUS; i < RADIUS; i += 1.) {                
+    for (float i = -RADIUS; i <= RADIUS; i += 1.) {                
 		vec3 tex = texture2D(gm_BaseTexture, v_vTexcoord + offset * i).rgb;
 		vec2 gaussV = vec2(gauss(i), gauss(i * u_glowProperties.b));    	
 		blur += vec4(vec3(tex.rgb * gaussV.x), luma(tex) * u_glowProperties.g * gaussV.y);	
