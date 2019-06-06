@@ -4,6 +4,6 @@
 surBase = surface_create(surface_get_width(application_surface), surface_get_height(application_surface));
 surPass = surface_create(surface_get_width(application_surface), surface_get_height(application_surface));
 
-uOuterIntensity = 1.8;
-uInnerIntensity = 6.5;
-uInnerLengthMultiplier = 3.3;
+uOuterIntensity = 3.2;
+uInnerIntensity = 20.0
+uInnerLengthMultiplier = 2.15;

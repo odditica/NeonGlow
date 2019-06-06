@@ -33,8 +33,8 @@ void main()
 		}
 		vec3 tex = texture2D(gm_BaseTexture, v_vTexcoord + offset * i).rgb;
 		vec2 gaussV = vec2(gauss(i), gauss(i * u_glowProperties.b));    	
-		blur += vec4(vec3(tex.rgb * gaussV.x), luma(tex) * u_glowProperties.g * gaussV.y);	
+		blur += vec4(vec3(tex.rgb * gaussV.x), luma(tex) * gaussV.y);	
     }
 
-    gl_FragColor = vec4(blur.rgb * u_glowProperties.r, blur.a);
+    gl_FragColor = vec4(blur.rgb, blur.a );
 }
