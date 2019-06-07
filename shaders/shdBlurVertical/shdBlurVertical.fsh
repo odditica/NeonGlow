@@ -2,7 +2,7 @@
 
 #extension GL_OES_standard_derivatives : enable
 
-#define RADIUS 25.0
+#define RADIUS 75.0
 #define PI 3.1415926535897932384626433832795
 #define SIGMA (RADIUS / 3.)
 #define TSQR_SIGMA (2. * SIGMA * SIGMA)
@@ -15,6 +15,12 @@ uniform vec3 u_glowProperties;
 // The compiler should optimise this.
 float gauss(float v) {
 	return (1.0 / sqrt(TSQR_SIGMA * PI)) * exp(-(v * v) / TSQR_SIGMA);   
+}
+
+
+float rand(vec2 n) { 
+	n += length(u_glowProperties);
+	return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453) - .5;
 }
 
 void main()
@@ -31,5 +37,5 @@ void main()
     	blur += vec4(vec3(tex.rgb * gaussV.x), tex.a * gaussV.y);		
     }	
 	
-    gl_FragColor = v_vColour * vec4(blur.rgb * u_glowProperties.r + blur.aaa * u_glowProperties.g, 1.0);	
+    gl_FragColor = v_vColour * vec4(blur.rgb * (u_glowProperties.r * u_glowProperties.r) + blur.aaa * (u_glowProperties.g * u_glowProperties.g), 1.0) * (1. + .05 * rand(gl_FragCoord.xy));	
 }

@@ -21,7 +21,6 @@ draw_surface(surBase, 0, 0);
 gpu_set_blendenable(true);
 
 shader_reset();
-
 surface_reset_target();
 
 //// Vertical pass + final adjustments, add on top
@@ -33,4 +32,3 @@ draw_surface(surPass, 0, 0);
 shader_reset();
 
 gpu_set_blendmode(bm_normal);
-
