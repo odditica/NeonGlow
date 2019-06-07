@@ -15,6 +15,7 @@ draw_clear_alpha(c_black, 0);
 
 shader_set(shdBlurHorizontal);
 shader_set_uniform_f(shader_get_uniform(shdBlurHorizontal, "u_glowProperties"), uOuterIntensity, uInnerIntensity, uInnerLengthMultiplier);
+shader_set_uniform_f(shader_get_uniform(shdBlurHorizontal, "u_time"), current_time);
 
 gpu_set_blendenable(false); //necessary!
 draw_surface(surBase, 0, 0);
@@ -28,6 +29,7 @@ gpu_set_blendmode(bm_add);
 
 shader_set(shdBlurVertical);
 shader_set_uniform_f(shader_get_uniform(shdBlurVertical, "u_glowProperties"), uOuterIntensity, uInnerIntensity, uInnerLengthMultiplier);
+shader_set_uniform_f(shader_get_uniform(shdBlurVertical, "u_time"), current_time);
 draw_surface(surPass, 0, 0);
 shader_reset();
 
